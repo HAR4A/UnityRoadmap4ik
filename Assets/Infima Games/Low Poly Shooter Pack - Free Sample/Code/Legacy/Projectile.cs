@@ -66,6 +66,12 @@ public class Projectile : MonoBehaviour {
 			Destroy (gameObject);
 		}
 
+		if (collision.gameObject.TryGetComponent<IHaveProjectileReaction>(out var reactiveObject))
+		{
+			reactiveObject.React();
+			Destroy(gameObject);
+		}
+		
 		//If bullet collides with "Blood" tag
 		if (collision.transform.tag == "Blood") 
 		{
@@ -109,36 +115,7 @@ public class Projectile : MonoBehaviour {
 			//Destroy bullet object
 			Destroy(gameObject);
 		}
-
-		//If bullet collides with "Target" tag
-		if (collision.transform.tag == "Target") 
-		{
-			//Toggle "isHit" on target object
-			collision.transform.gameObject.GetComponent
-				<TargetScript>().isHit = true;
-			//Destroy bullet object
-			Destroy(gameObject);
-		}
-			
-		//If bullet collides with "ExplosiveBarrel" tag
-		if (collision.transform.tag == "ExplosiveBarrel") 
-		{
-			//Toggle "explode" on explosive barrel object
-			collision.transform.gameObject.GetComponent
-				<ExplosiveBarrelScript>().explode = true;
-			//Destroy bullet object
-			Destroy(gameObject);
-		}
-
-		//If bullet collides with "GasTank" tag
-		if (collision.transform.tag == "GasTank") 
-		{
-			//Toggle "isHit" on gas tank object
-			collision.transform.gameObject.GetComponent
-				<GasTankScript> ().isHit = true;
-			//Destroy bullet object
-			Destroy(gameObject);
-		}
+		
 	}
 
 	private IEnumerator DestroyTimer () 

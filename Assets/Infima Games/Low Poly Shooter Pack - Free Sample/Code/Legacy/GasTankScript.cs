@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GasTankScript : MonoBehaviour {
+public class GasTankScript : MonoBehaviour, IHaveProjectileReaction {
 
 	float randomRotationValue;
 	float randomValue;
@@ -111,6 +111,11 @@ public class GasTankScript : MonoBehaviour {
 		impactSound.Play ();
 	}
 
+	public void React()
+	{
+		isHit = true;
+	}
+	
 	private IEnumerator Explode ()
 	{
 		//Wait for set amount of time

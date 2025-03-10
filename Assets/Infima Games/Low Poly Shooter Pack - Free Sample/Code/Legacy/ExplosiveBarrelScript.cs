@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ExplosiveBarrelScript : MonoBehaviour {
+public class ExplosiveBarrelScript : MonoBehaviour, IHaveProjectileReaction {
 
 	float randomTime;
 	bool routineStarted = false;
@@ -43,7 +43,10 @@ public class ExplosiveBarrelScript : MonoBehaviour {
 			} 
 		}
 	}
-	
+	public void React()
+	{
+		explode = true;
+	}
 	private IEnumerator Explode () {
 		//Wait for set amount of time
 		yield return new WaitForSeconds(randomTime);

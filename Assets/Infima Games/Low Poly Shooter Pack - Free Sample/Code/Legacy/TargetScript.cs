@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TargetScript : MonoBehaviour {
+public class TargetScript : MonoBehaviour, IHaveProjectileReaction {
 
 	float randomTime;
 	bool routineStarted = false;
@@ -50,6 +50,11 @@ public class TargetScript : MonoBehaviour {
 		}
 	}
 
+	public void React()
+	{
+		isHit = true;
+	}
+	
 	//Time before the target pops back up
 	private IEnumerator DelayTimer () {
 		//Wait for random amount of time
