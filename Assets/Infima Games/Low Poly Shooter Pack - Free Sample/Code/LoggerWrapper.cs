@@ -37,3 +37,6 @@ public class LoggerWrapper : MonoBehaviour
         }
     }
 }
+
+
+//task 3.2 - im not find "LogMovable" in the project :( 
