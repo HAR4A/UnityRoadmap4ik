@@ -4,31 +4,27 @@ using System.Linq;
 using UnityEngine;
 
 public class UnityLogger
-{
-   public void Log(string message)
-   {
-	Debug.Log(message);
-   }
-	
-   public void LogCollection(string[] strs)
-   {
-      foreach (string str in strs)
-      {
-         Log(str);
-      }
-		
-      strs[0] = "Ya izmenil massiv";
-   }
+{ 
+    public void Log(string message)
+    {
+        Debug.Log(message);
+    }
+    public void LogCollection(IEnumerable<string> collection)
+    {
+        foreach (string str in collection)
+        {
+            Log(str);
+        }
+    }
 }
 
 public class LoggerWrapper : MonoBehaviour
 {
-   private UnityLogger logger = new();
+    private UnityLogger logger = new();
+    public UnityLogger Logger => logger;
 
-   public UnityLogger Logger => logger;
-
-   private void Update()
-   {
+    private void Update()
+    {
         if (Input.GetKeyDown(KeyCode.Z))
         {
             List<string> stringsList = new List<string>() { "STR", "StringTwo", "StringThree" };
